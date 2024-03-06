@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using QuizGame.Infrastructure.Data.Models;
 
 namespace QuizGame.Data
 {
@@ -9,5 +10,8 @@ namespace QuizGame.Data
             : base(options)
         {
         }
+
+        public DbSet<Author> Authors { get; set; } = null!;
+        public DbSet<Quiz> Quizzes { get; set; } = null!;
     }
 }

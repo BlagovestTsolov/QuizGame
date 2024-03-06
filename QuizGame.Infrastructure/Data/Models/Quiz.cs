@@ -13,6 +13,10 @@ namespace QuizGame.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [Comment("Author Identifier")]
+        public int AuthorId { get; set; }
+
+        [Required]
         [Comment("Author")]
         public Author Author { get; set; } = null!;
 
