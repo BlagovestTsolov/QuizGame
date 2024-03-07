@@ -28,7 +28,6 @@ namespace QuizGame.Extensions
 
         public static IServiceCollection AddApplicationIdentity(
             this IServiceCollection services)
-            //IConfiguration config)
         {
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
