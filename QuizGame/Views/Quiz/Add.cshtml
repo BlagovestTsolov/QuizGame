@@ -1,4 +1,4 @@
-﻿@* @model AddQuizModel
+﻿@model AddQuizModel
 @{
     ViewBag.Title = "Add Quiz";
 }
@@ -8,9 +8,15 @@
     <form method="post">
         <div class="form-group">
             <div class="mb-3">
-                <label asp-for="QuestionType"></label>
-                <input asp-for="QuestionType" class="form-control" placeholder="Write your title here...">
-                <span asp-validation-for="@Model.QuestionType" class="small text-danger"></span>
+                <label asp-for="@Model.QuestionTypeId" class="form-label-add-edit">Select Question Type</label>
+                <select asp-for="@Model.QuestionTypeId" class="form-control" aria-required="true">
+                    <option disabled selected value="">Select Question Type...</option>
+                    @foreach (var item in Model.QuestionTypes)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.QuestionTypeId" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Question"></label>
@@ -20,4 +26,4 @@
         </div>
         <input class="btn btn-primary mt-3" type="submit" value="Create" />
     </form>
-</div> *@
+</div>

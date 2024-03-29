@@ -1,4 +1,5 @@
 ﻿using QuizGame.Core.Models.Quiz;
+using QuizGame.Core.Models.QuizType;
 
 namespace QuizGame.Core.Contracts
 {
@@ -7,5 +8,7 @@ namespace QuizGame.Core.Contracts
         Task CreateQuizAsync(AddQuizModel model);
 
         Task<IList<QuizDto>> AllAsync();
+
+        public Task<List<QuestionTypeModel>> GetQuestionTypesAsync();
     }
 }

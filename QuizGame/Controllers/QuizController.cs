@@ -26,8 +26,13 @@ namespace QuizGame.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
-            => View();
+        public async Task<IActionResult> Add()
+        {
+            var model = new AddQuizModel();
+            model.QuestionTypes = await quizService.GetQuestionTypesAsync();
+
+            return View(model);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Add(AddQuizModel model)

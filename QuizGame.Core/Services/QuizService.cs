@@ -1,5 +1,6 @@
 ﻿using QuizGame.Core.Contracts;
 using QuizGame.Core.Models.Quiz;
+using QuizGame.Core.Models.QuizType;
 using QuizGame.Infrastructure.Data.Models;
 using QuizGame.Infrastructure.Repository;
 
@@ -34,6 +35,20 @@ namespace QuizGame.Core.Services
                 Author = q.Author.User.UserName,
                 QuestionType = q.QuestionType.ToString(),
                 Question = q.Question
+            })
+            .ToList();
+
+            return result;
+        }
+
+        public async Task<List<QuestionTypeModel>> GetQuestionTypesAsync()
+        {
+            var set = await repository.AllReadOnlyAsync<QuestionType>();
+
+            var result = set.Select(s => new QuestionTypeModel
+            {
+                Id = s.Id,
+                Name = s.Name
             })
             .ToList();
 
