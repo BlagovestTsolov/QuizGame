@@ -55,9 +55,10 @@ namespace QuizGame.Core.Services
             return result;
         }
 
-        public Task DeleteQuizAsync(int id)
+        public async Task DeleteQuizAsync(int id)
         {
-            throw new NotImplementedException();
+            await repository.DeleteAsync<Quiz>(id);
+            await repository.SaveChangesAsync();
         }
     }
 }

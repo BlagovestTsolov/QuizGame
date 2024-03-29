@@ -46,5 +46,12 @@ namespace QuizGame.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await quizService.DeleteQuizAsync(id);
+
+            return RedirectToAction(nameof(All));
+        }
     }
 }
