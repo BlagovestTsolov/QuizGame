@@ -1,9 +1,11 @@
-﻿using QuizGame.Infrastructure.Data.Enums;
+﻿using QuizGame.Core.Models.Quiz;
 
 namespace QuizGame.Core.Contracts
 {
     public interface IQuizService
     {
-        Task CreateQuizAsync(int authorId, QuestionType questionType, string question);
+        Task CreateQuizAsync(AddQuizModel model);
+
+        Task<IList<QuizDto>> AllAsync();
     }
 }

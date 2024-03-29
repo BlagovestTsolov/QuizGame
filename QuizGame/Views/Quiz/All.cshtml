@@ -1,0 +1,27 @@
+﻿@model IList<QuizDto>
+
+@{
+    ViewBag.Title = "Quiz Questions";
+}
+
+<h2>Quiz Questions</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Question Type</th>
+            <th>Question</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var quiz in Model)
+        {
+            <tr>
+                <td>@quiz.Author</td>
+                <td>@quiz.QuestionType</td>
+                <td>@quiz.Question</td>
+            </tr>
+        }
+    </tbody>
+</table>

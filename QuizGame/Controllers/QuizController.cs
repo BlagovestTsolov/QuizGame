@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizGame.Core.Contracts;
+using QuizGame.Core.Models.Quiz;
 
 namespace QuizGame.Controllers
 {
@@ -12,9 +13,33 @@ namespace QuizGame.Controllers
             quizService = _quizService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> All()
         {
-            return View();
+            var res = await quizService.AllAsync();
+
+            if (res == null)
+            {
+                return BadRequest();
+            }
+
+            return View(res);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+            => View();
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddQuizModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            await quizService.CreateQuizAsync(model);
+
+            return RedirectToAction(nameof(All));
         }
     }
 }
