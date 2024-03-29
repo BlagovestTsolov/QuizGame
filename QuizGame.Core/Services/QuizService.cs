@@ -20,7 +20,7 @@ namespace QuizGame.Core.Services
             await repository.AddAsync<Quiz>(new()
             {
                 AuthorId = model.AuthorId,
-                //QuestionType = model.QuestionType,
+                QuestionTypeId = model.QuestionTypeId,
                 Question = model.Question
             });
             await repository.SaveChangesAsync();
@@ -33,7 +33,7 @@ namespace QuizGame.Core.Services
             var result = set.Select(q => new QuizDto
             {
                 Author = q.Author.User.UserName,
-                QuestionType = q.QuestionType.ToString(),
+                QuestionType = q.QuestionType.Name,
                 Question = q.Question
             })
             .ToList();
@@ -53,6 +53,11 @@ namespace QuizGame.Core.Services
             .ToList();
 
             return result;
+        }
+
+        public Task DeleteQuizAsync(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

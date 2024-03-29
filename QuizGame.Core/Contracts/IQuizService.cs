@@ -9,6 +9,8 @@ namespace QuizGame.Core.Contracts
 
         Task<IList<QuizDto>> AllAsync();
 
-        public Task<List<QuestionTypeModel>> GetQuestionTypesAsync();
+        Task<List<QuestionTypeModel>> GetQuestionTypesAsync();
+
+        Task DeleteQuizAsync(int id);
     }
 }

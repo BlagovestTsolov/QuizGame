@@ -22,5 +22,18 @@ namespace QuizGame.Infrastructure.Repository
 
         public async Task SaveChangesAsync()
             => await context.SaveChangesAsync();
+
+        public async Task<T?> GetByIdAsync<T>(object id) where T : class
+            => await context.Set<T>().FindAsync(id);
+
+        public async Task DeleteAsync<T>(int id) where T : class
+        {
+            T? entity = await GetByIdAsync<T>(id);
+
+            if (entity != null)
+            {
+                context.Remove(entity);
+            }
+        }
     }
 }

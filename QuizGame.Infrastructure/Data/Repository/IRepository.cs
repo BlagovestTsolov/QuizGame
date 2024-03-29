@@ -9,5 +9,9 @@
         Task AddAsync<T>(T entity) where T : class;
 
         Task SaveChangesAsync();
+
+        Task<T?> GetByIdAsync<T>(object id) where T : class;
+
+        Task DeleteAsync<T>(int id) where T : class;
     }
 }
