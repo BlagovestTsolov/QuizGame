@@ -1,5 +1,4 @@
-﻿using QuizGame.Infrastructure.Data.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using static QuizGame.Infrastructure.Data.Constants.DataConstants;
 using static QuizGame.Infrastructure.ErrorMessages.ErrorMessages;
 
@@ -11,7 +10,10 @@ namespace QuizGame.Core.Models.Quiz
         public int AuthorId { get; set; }
 
         [Required(ErrorMessage = RequiredErrorMessage)]
-        public QuestionType QuestionType { get; set; }
+        [StringLength(QuestionTypeConstants.QuizTypeMaxLength,
+            MinimumLength = QuestionTypeConstants.QuizTypeMinLength,
+            ErrorMessage = LengthErrorMessage)]
+        public string QuestionType { get; set; } = null!;
 
         [Required(ErrorMessage = RequiredErrorMessage)]
         [StringLength(QuizConstants.QuestionMaxLength,

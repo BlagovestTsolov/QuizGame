@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using QuizGame.Infrastructure.Data.Enums;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static QuizGame.Infrastructure.Data.Constants.DataConstants;
 
 namespace QuizGame.Infrastructure.Data.Models
@@ -21,8 +20,13 @@ namespace QuizGame.Infrastructure.Data.Models
         public Author Author { get; set; } = null!;
 
         [Required]
+        [Comment("Question Type Identifier")]
+        public int QuestionTypeId { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(QuestionTypeId))]
         [Comment("Question Type")]
-        public QuestionType QuestionType { get; set; }
+        public QuestionType QuestionType { get; set; } = null!;
 
         [Required]
         [MaxLength(QuizConstants.QuestionMaxLength)]

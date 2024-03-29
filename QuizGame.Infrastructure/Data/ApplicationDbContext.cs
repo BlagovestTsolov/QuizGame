@@ -13,5 +13,6 @@ namespace QuizGame.Data
 
         public DbSet<Author> Authors { get; set; } = null!;
         public DbSet<Quiz> Quizzes { get; set; } = null!;
+        public DbSet<QuestionType> QuestionTypes { get; set; } = null!;
     }
 }

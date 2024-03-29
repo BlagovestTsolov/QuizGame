@@ -26,7 +26,7 @@ namespace QuizGame.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public IActionResult Add()
             => View();
 
         [HttpPost]
