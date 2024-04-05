@@ -42,10 +42,10 @@ namespace QuizGame.Infrastructure.Data.Seed
             AuthorUser = new IdentityUser()
             {
                 Id = "fd59e0b6-59ae-4ff9-a1cf-029508048fe5",
-                UserName = "agent@mail.com",
-                NormalizedUserName = "agent@mail.com",
-                Email = "agent@mail.com",
-                NormalizedEmail = "agent@mail.com"
+                UserName = "author@mail.com",
+                NormalizedUserName = "author@mail.com",
+                Email = "author@mail.com",
+                NormalizedEmail = "author@mail.com"
             };
 
             AuthorUser.PasswordHash =

@@ -15,24 +15,13 @@ namespace QuizGame.Core.Services
 
         public async Task<int> GetAuthorIdAsync(string userId)
         {
-            int result;
-
             var id = (await repository.AllReadOnlyAsync<Author>())
                 .FirstOrDefault(a => a.UserId == userId)?.Id;
 
-            if (id == null)
-            {
-                result = 0;
-            }
-            else
-            {
-                result = id.Value;
-            }
-
-            return result;
+            return id ?? 0;
         }
 
-        public async Task CreateAsync(string userId)
+        public async Task BecomeAuthorAsync (string userId)
         {
             await repository.AddAsync<Author>(new()
             {

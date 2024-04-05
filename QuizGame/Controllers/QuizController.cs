@@ -1,16 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizGame.Core.Contracts;
 using QuizGame.Core.Models.Quiz;
+using System.Security.Claims;
 
 namespace QuizGame.Controllers
 {
     public class QuizController : BaseController
     {
         private readonly IQuizService quizService;
+        private readonly IAuthorService authorService;
 
-        public QuizController(IQuizService _quizService)
+        public QuizController(IQuizService _quizService, IAuthorService _authorService)
         {
             quizService = _quizService;
+            authorService = _authorService;
         }
 
         public async Task<IActionResult> All()
@@ -39,7 +42,16 @@ namespace QuizGame.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                model.QuestionTypes = await quizService.GetQuestionTypesAsync();
+
+                return View(model);
+            }
+
+            model.AuthorId = await authorService.GetAuthorIdAsync(GetUserId());
+
+            if (model.AuthorId == 0)
+            {
+                return BadRequest();
             }
 
             await quizService.CreateQuizAsync(model);
@@ -53,5 +65,8 @@ namespace QuizGame.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
+        private string GetUserId()
+            => User.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }

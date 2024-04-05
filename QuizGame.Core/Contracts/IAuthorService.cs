@@ -4,6 +4,6 @@
     {
         Task<int> GetAuthorIdAsync(string userId);
 
-        Task CreateAsync(string userId);
+        Task BecomeAuthorAsync (string userId);
     }
 }
