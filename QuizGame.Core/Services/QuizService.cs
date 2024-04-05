@@ -28,9 +28,9 @@ namespace QuizGame.Core.Services
 
         public async Task<IList<QuizDto>> AllAsync()
         {
-            var set = await repository.AllReadOnlyAsync<Quiz>();
+            var quizzes = await repository.QuizzesWithAuthorsReadOnlyAsync();
 
-            var result = set.Select(q => new QuizDto
+            var result = quizzes.Select(q => new QuizDto
             {
                 Author = q.Author.User.UserName,
                 QuestionType = q.QuestionType.Name,

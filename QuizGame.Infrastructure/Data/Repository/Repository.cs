@@ -19,7 +19,12 @@ namespace QuizGame.Infrastructure.Repository
             => await context.Set<T>().AsNoTracking().ToListAsync();
 
         public async Task<IList<Quiz>> QuizzesWithAuthorsReadOnlyAsync() 
-            => await context.Quizzes.Include(q => q.Author).AsNoTracking().ToListAsync();
+            => await context.Quizzes
+            .Include(q => q.QuestionType)
+            .Include(q => q.Author)
+            .ThenInclude(a => a.User)
+            .AsNoTracking()
+            .ToListAsync();
 
         public async Task AddAsync<T>(T entity) where T : class
             => await context.AddAsync(entity);
