@@ -23,6 +23,11 @@
                 <input asp-for="Question" class="form-control" placeholder="Write your question here...">
                 <span asp-validation-for="@Model.Question" class="small text-danger"></span>
             </div>
+            <div class="mb-3">
+                <label asp-for="Answer"></label>
+                <input asp-for="Answer" class="form-control" placeholder="Write your answer here...">
+                <span asp-validation-for="@Model.Answer" class="small text-danger"></span>
+            </div>
         </div>
         <input class="btn btn-primary mt-3" type="submit" value="Create" />
     </form>

@@ -70,6 +70,18 @@ namespace QuizGame.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        public async Task<IActionResult> Details(int id)
+        {
+            var model = await quizService.DetailsAsync(id);
+
+            if (model.Author == null)
+            {
+                return BadRequest();
+            }
+
+            return View(model);
+        }
+
         private string GetUserId()
             => User.FindFirstValue(ClaimTypes.NameIdentifier);
     }

@@ -6,6 +6,8 @@
 
         public string Question { get; set; } = null!;
 
+        public string Answer { get; set; } = null!;
+
         public string QuestionType { get; set; } = null!;
     }
 }

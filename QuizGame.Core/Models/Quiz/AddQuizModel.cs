@@ -17,6 +17,12 @@ namespace QuizGame.Core.Models.Quiz
         public string Question { get; set; } = null!;
 
         [Required(ErrorMessage = RequiredErrorMessage)]
+        [StringLength(QuizConstants.AnswerMaxLength,
+            MinimumLength = QuizConstants.AnswerMinLenth,
+            ErrorMessage = LengthErrorMessage)]
+        public string Answer { get; set; } = null!;
+
+        [Required(ErrorMessage = RequiredErrorMessage)]
         public int QuestionTypeId { get; set; }
 
         public IList<QuestionTypeModel> QuestionTypes = new List<QuestionTypeModel>();

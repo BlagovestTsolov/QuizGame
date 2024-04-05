@@ -1,0 +1,35 @@
+﻿@model QuizDto
+
+@{
+    ViewData["Title"] = "Quiz Details";
+}
+
+<h1>@Model.Question</h1>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">
+        Author
+    </dt>
+    <dd class="col-sm-10">
+        @Model.Author
+    </dd>
+    <dt class="col-sm-2">
+        Question Type
+    </dt>
+    <dd class="col-sm-10">
+        @Model.QuestionType
+    </dd>
+    <dt class="col-sm-2">
+        Question
+    </dt>
+    <dd class="col-sm-10">
+        @Model.Question
+    </dd>
+    <dt class="col-sm-2">
+        Answer
+    </dt>
+    <dd class="col-sm-10">
+        @Model.Answer
+    </dd>
+</dl>

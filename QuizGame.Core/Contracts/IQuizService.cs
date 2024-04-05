@@ -14,5 +14,7 @@ namespace QuizGame.Core.Contracts
         Task DeleteQuizAsync(int id);
 
         Task<bool> QuestionExistsAsync(string question);
+
+        Task<QuizDto> DetailsAsync(int id);
     }
 }

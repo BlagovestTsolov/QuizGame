@@ -21,7 +21,8 @@ namespace QuizGame.Core.Services
             {
                 AuthorId = model.AuthorId,
                 QuestionTypeId = model.QuestionTypeId,
-                Question = model.Question
+                Question = model.Question,
+                Answer = model.Answer
             });
             await repository.SaveChangesAsync();
         }
@@ -65,6 +66,23 @@ namespace QuizGame.Core.Services
         {
             var quizzes = await repository.AllReadOnlyAsync<Quiz>();
             return quizzes.Any(q => q.Question == question);
+        }
+
+        public async Task<QuizDto> DetailsAsync(int id)
+        {
+            var set = await repository.QuizzesWithAuthorsReadOnlyAsync();
+            var entity = set.FirstOrDefault(e => e.Id == id);
+
+            QuizDto model = new();
+            if (entity != null)
+            {
+                model.Author = entity.Author.User.UserName;
+                model.Question = entity.Question;
+                model.Answer = entity.Answer;
+                model.QuestionType = entity.QuestionType.Name;
+            }
+
+            return model;
         }
     }
 }
