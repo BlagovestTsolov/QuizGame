@@ -29,5 +29,11 @@ namespace QuizGame.Core.Services
             });
             await repository.SaveChangesAsync();
         }
+
+        public async Task<bool> AuthorExistsByIdAsync(string userId)
+        {
+            var authors = await repository.AllReadOnlyAsync<Author>();
+            return authors.Any(a => a.UserId == userId);
+        }
     }
 }
