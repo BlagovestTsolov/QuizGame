@@ -53,6 +53,10 @@ namespace QuizGame.Controllers
             {
                 return BadRequest();
             }
+            if (await quizService.QuestionExistsAsync(model.Question))
+            {
+                return BadRequest();
+            }
 
             await quizService.CreateQuizAsync(model);
 

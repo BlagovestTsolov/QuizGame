@@ -60,5 +60,11 @@ namespace QuizGame.Core.Services
             await repository.DeleteAsync<Quiz>(id);
             await repository.SaveChangesAsync();
         }
+
+        public async Task<bool> QuestionExistsAsync(string question)
+        {
+            var quizzes = await repository.AllReadOnlyAsync<Quiz>();
+            return quizzes.Any(q => q.Question == question);
+        }
     }
 }

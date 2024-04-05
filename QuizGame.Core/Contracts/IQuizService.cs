@@ -12,5 +12,7 @@ namespace QuizGame.Core.Contracts
         Task<List<QuestionTypeModel>> GetQuestionTypesAsync();
 
         Task DeleteQuizAsync(int id);
+
+        Task<bool> QuestionExistsAsync(string question);
     }
 }
