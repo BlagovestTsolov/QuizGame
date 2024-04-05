@@ -118,6 +118,7 @@ namespace QuizGame.Infrastructure.Data.Seed
             {
                 Id = 1,
                 Question = "Каква е ролята на Кирил и Методий за развитието на българската култура?",
+                Answer = "Те са създатели на славянската писменост, преводачи на богослужебни книги, проповедници на християнството и основоположници на българската литература.",
                 QuestionTypeId = HistoryQuestionType.Id,
                 AuthorId = Author.Id,
             };
@@ -126,6 +127,7 @@ namespace QuizGame.Infrastructure.Data.Seed
             {
                 Id = 2,
                 Question = "Какъв е процесът на фотосинтеза и каква е неговата роля за живите организми?",
+                Answer = "Фотосинтезата е процес, при който слънчевата светлина се превръща в химическа енергия, съхранена в глюкоза. Този процес се осъществява от фотосинтезиращи организми, като растения, водорасли и някои бактерии.",
                 QuestionTypeId = BiologyQuestionType.Id,
                 AuthorId = Author.Id
             };
@@ -134,6 +136,7 @@ namespace QuizGame.Infrastructure.Data.Seed
             {
                 Id = 3,
                 Question = "Кои са трите основни периода в развитието на българската литература?",
+                Answer = "Трите основни периода в развитието на българската литература са: Старобългарска литература (IX-XVIII век), Възрожденска литература (XVIII-XIX век) и Съвременна българска литература (XIX-XXI век)",
                 QuestionTypeId = LiteratureQuestionType.Id,
                 AuthorId = Author.Id
             };

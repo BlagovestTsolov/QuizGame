@@ -6,6 +6,9 @@
         {
             public const int QuestionMaxLength = 100;
             public const int QuestionMinLength = 15;
+
+            public const int AnswerMaxLength = 500;
+            public const int AnswerMinLenth = 3;
         }
 
         public class QuestionTypeConstants

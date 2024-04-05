@@ -32,5 +32,10 @@ namespace QuizGame.Infrastructure.Data.Models
         [MaxLength(QuizConstants.QuestionMaxLength)]
         [Comment("Question")]
         public string Question { get; set; } = null!;
+
+        [Required]
+        [MaxLength(QuizConstants.AnswerMaxLength)]
+        [Comment("Answer")]
+        public string Answer { get; set; } = null!;
     }
 }
