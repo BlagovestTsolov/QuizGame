@@ -1,10 +1,14 @@
-﻿namespace QuizGame.Infrastructure.Repository
+﻿using QuizGame.Infrastructure.Data.Models;
+
+namespace QuizGame.Infrastructure.Repository
 {
     public interface IRepository
     {
         Task<IList<T>> AllAsync<T>() where T : class;
 
         Task<IList<T>> AllReadOnlyAsync<T>() where T : class;
+
+        Task<IList<Quiz>> QuizzesWithAuthorsReadOnlyAsync();
 
         Task AddAsync<T>(T entity) where T : class;
 
