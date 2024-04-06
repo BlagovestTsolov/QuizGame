@@ -1,5 +1,6 @@
 ﻿using QuizGame.Core.Models.Quiz;
 using QuizGame.Core.Models.QuizType;
+using QuizGame.Infrastructure.Data.Models;
 
 namespace QuizGame.Core.Contracts
 {
@@ -16,5 +17,9 @@ namespace QuizGame.Core.Contracts
         Task<bool> QuestionExistsAsync(string question);
 
         Task<QuizDto> DetailsAsync(int id);
+
+        Task<Quiz?> ExistsAsync(int id);
+
+        Task EditAsync(AddQuizModel model);
     }
 }

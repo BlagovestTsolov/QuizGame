@@ -84,5 +84,25 @@ namespace QuizGame.Core.Services
 
             return model;
         }
+
+        public async Task<Quiz?> ExistsAsync(int id)
+        {
+            var set = await repository.AllReadOnlyAsync<Quiz>();
+            return set.FirstOrDefault(e => e.Id == id);
+        }
+
+        public async Task EditAsync(AddQuizModel model)
+        {
+            Quiz quiz = new()
+            {
+                AuthorId = model.AuthorId,
+                Question = model.Question,
+                Answer = model.Answer,
+                QuestionTypeId = model.QuestionTypeId
+            };
+
+            await repository.AddAsync(quiz);
+            await repository.SaveChangesAsync();
+        }
     }
 }

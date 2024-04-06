@@ -82,6 +82,63 @@ namespace QuizGame.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var entity = await quizService.ExistsAsync(id);
+            int authorId = await authorService.GetAuthorIdAsync(GetUserId());
+
+            if (entity == null)
+            {
+                return BadRequest();
+            }
+            if (authorId == 0)
+            {
+                return BadRequest();
+            }
+            if (entity.AuthorId != authorId)
+            {
+                return Unauthorized();
+            }
+
+            AddQuizModel model = new()
+            {
+                AuthorId = entity.AuthorId,
+                Question = entity.Question,
+                Answer = entity.Answer,
+                QuestionTypeId = entity.QuestionTypeId,
+            };
+            model.QuestionTypes = await quizService.GetQuestionTypesAsync();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, AddQuizModel model)
+        {
+            int authorId = await authorService.GetAuthorIdAsync(GetUserId());
+
+            if (!ModelState.IsValid)
+            {
+                model.QuestionTypes = await quizService.GetQuestionTypesAsync();
+
+                return View(model);
+            }
+            if (authorId == 0)
+            {
+                return BadRequest();
+            }
+            if (model.AuthorId != authorId)
+            {
+                return Unauthorized();
+            }
+
+            model.AuthorId = authorId;
+
+            await quizService.EditAsync(model);
+            return RedirectToAction(nameof(All));
+        }
+
         private string GetUserId()
             => User.FindFirstValue(ClaimTypes.NameIdentifier);
     }
