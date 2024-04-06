@@ -2,5 +2,7 @@
 {
     public class StatisticModel
     {
+        public int TotalQuizzes { get; set; }
+        public int TotalAuthors { get; set; }
     }
 }

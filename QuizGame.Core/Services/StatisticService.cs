@@ -1,5 +1,6 @@
 ﻿using QuizGame.Core.Contracts;
 using QuizGame.Core.Models.Statistic;
+using QuizGame.Infrastructure.Data.Models;
 using QuizGame.Infrastructure.Repository;
 
 namespace QuizGame.Core.Services
@@ -10,12 +11,21 @@ namespace QuizGame.Core.Services
 
         public StatisticService(IRepository _repository)
         {
-            repository = _repository;   
-        } 
+            repository = _repository;
+        }
 
-        public Task<StatisticModel> TotalAsync()
+        public async Task<StatisticModel> TotalAsync()
         {
-            throw new NotImplementedException();
+            var quizzes = await repository.AllReadOnlyAsync<Quiz>();
+            var authors = await repository.AllReadOnlyAsync<Author>();
+
+            StatisticModel model = new()
+            {
+                TotalQuizzes = quizzes.Count,
+                TotalAuthors = authors.Count
+            };
+
+            return model;
         }
     }
 }
