@@ -114,7 +114,7 @@ namespace QuizGame.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, AddQuizModel model)
+        public async Task<IActionResult> Edit(AddQuizModel model)
         {
             int authorId = await authorService.GetAuthorIdAsync(GetUserId());
 
