@@ -47,7 +47,7 @@ namespace QuizGame.Controllers
                 return View(model);
             }
 
-            model.AuthorId = await authorService.GetAuthorIdAsync(GetUserId());
+            model.AuthorId = await authorService.GetAuthorIdAsync(User.Id());
 
             if (model.AuthorId == 0)
             {
@@ -86,7 +86,7 @@ namespace QuizGame.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var entity = await quizService.ExistsAsync(id);
-            int authorId = await authorService.GetAuthorIdAsync(GetUserId());
+            int authorId = await authorService.GetAuthorIdAsync(User.Id());
 
             if (entity == null)
             {
@@ -116,7 +116,7 @@ namespace QuizGame.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(AddQuizModel model)
         {
-            int authorId = await authorService.GetAuthorIdAsync(GetUserId());
+            int authorId = await authorService.GetAuthorIdAsync(User.Id());
 
             if (!ModelState.IsValid)
             {
@@ -138,8 +138,5 @@ namespace QuizGame.Controllers
             await quizService.EditAsync(model);
             return RedirectToAction(nameof(All));
         }
-
-        private string GetUserId()
-            => User.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }

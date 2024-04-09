@@ -15,17 +15,14 @@ namespace QuizGame.Controllers
 
         public async Task<IActionResult> Become()
         {
-            if (await authorService.AuthorExistsByIdAsync(GetUserId()))
+            if (await authorService.AuthorExistsByIdAsync(User.Id()))
             {
                 return BadRequest();
             }
 
-            await authorService.BecomeAuthorAsync(GetUserId());
+            await authorService.BecomeAuthorAsync(User.Id());
 
             return RedirectToAction(nameof(QuizController.All), "Quiz");
         }
-
-        private string GetUserId()
-            => User.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }
