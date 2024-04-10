@@ -1,4 +1,4 @@
-﻿using static QuizGame.Core.Constants.RoleConstants;
+﻿using static QuizGame.Core.Constants.AdminConstants;
 
 namespace System.Security.Claims
 {
