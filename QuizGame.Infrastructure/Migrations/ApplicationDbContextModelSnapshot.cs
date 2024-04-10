@@ -292,7 +292,7 @@ namespace QuizGame.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
 
                     b.HasData(
                         new
@@ -324,7 +324,7 @@ namespace QuizGame.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("QuestionTypes");
+                    b.ToTable("QuestionTypes", (string)null);
 
                     b.HasData(
                         new
@@ -379,7 +379,7 @@ namespace QuizGame.Infrastructure.Migrations
 
                     b.HasIndex("QuestionTypeId");
 
-                    b.ToTable("Quizzes");
+                    b.ToTable("Quizzes", (string)null);
 
                     b.HasData(
                         new

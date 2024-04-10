@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddApplicationServices();
 
 var app = builder.Build();
+app.SeedAdmin();
 
 if (app.Environment.IsDevelopment())
 {

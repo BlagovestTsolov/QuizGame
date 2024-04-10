@@ -1,6 +1,6 @@
 ﻿namespace QuizGame.Core.Constants
 {
-    public class AdminConstants
+    public static class AdminConstants
     {
         public const string AdminRole = "Administrator";
         public const string AdminAreaName = "Admin";
