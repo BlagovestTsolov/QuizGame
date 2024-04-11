@@ -33,6 +33,7 @@ namespace QuizGame.Core.Services
 
             var result = quizzes.Select(q => new QuizDto
             {
+                Id = q.Id,
                 Author = q.Author.User.UserName,
                 QuestionType = q.QuestionType.Name,
                 Question = q.Question

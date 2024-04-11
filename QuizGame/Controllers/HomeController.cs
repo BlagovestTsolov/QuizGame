@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using QuizGame.Models;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace QuizGame.Controllers
 {
@@ -16,6 +17,12 @@ namespace QuizGame.Controllers
 
         public IActionResult Index()
         {
+            if (User.IsAdmin())
+            {
+                return RedirectToAction
+                    ("Index", "Home", new {area = "Admin"});
+            }
+
             return View();
         }
 
