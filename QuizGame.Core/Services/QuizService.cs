@@ -78,7 +78,7 @@ namespace QuizGame.Core.Services
 
             await repository.SaveChangesAsync();
 
-            return 0;
+            return authorId;
         }
 
         public async Task<bool> QuestionExistsAsync(string question)

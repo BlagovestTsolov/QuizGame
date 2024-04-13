@@ -51,7 +51,7 @@ namespace QuizGame.Core.Services
                 return;
             }
 
-            if (author.Quizzes.Count > 0)
+            if (author.Quizzes.Count == 0)
             {
                 await repository.DeleteAsync<Author>(authorId);
                 await repository.SaveChangesAsync();

@@ -4,7 +4,7 @@
     {
         public string Id { get; set; } = null!;
 
-        public string Role { get; set; } = null!;
+        public bool IsAuthor { get; set; }
 
         public string Email { get; set; } = null!;
     }
