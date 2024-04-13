@@ -9,6 +9,7 @@
             <tr>
                 <th>ID</th>
                 <th>Email</th>
+                <th>Is Author</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,14 @@
                 <tr>
                     <td>@user.Id</td>
                     <td>@user.Email</td>
+                    @if (user.IsAuthor)
+                    {
+                        <td>✔</td>
+                    }
+                    else
+                    {
+                        <td>❌</td>
+                    }
                 </tr>
             }
         </tbody>

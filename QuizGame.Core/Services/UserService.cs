@@ -23,8 +23,7 @@ namespace QuizGame.Core.Services
                 .Select(u => new UserDto()
                 {
                     Id = u.Id,
-                    Email = u.Email,
-                    IsAuthor = true
+                    Email = u.Email
                 })
                 .ToList();
     }
