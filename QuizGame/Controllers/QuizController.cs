@@ -65,7 +65,16 @@ namespace QuizGame.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
+            if (await quizService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
 
+            if (await quizService.IsAuthorOfQuizAsync(User.Id(), id) == false &&
+                User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }
 
             int authorId = await quizService.DeleteQuizAsync(id);
             await authorService.DeleteAuthorAsync(authorId);
@@ -97,13 +106,13 @@ namespace QuizGame.Controllers
                 return BadRequest();
             }
 
-            if (await quizService.IsAuthorOfQuizAsync(User.Id(), id) == false)
+            if (await quizService.IsAuthorOfQuizAsync(User.Id(), id) == false && 
+                User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
 
             var model = await quizService.FillModelAsync(id);
-
             if (model == null)
             {
                 return BadRequest();
@@ -126,7 +135,7 @@ namespace QuizGame.Controllers
             {
                 return BadRequest();
             }
-            if (model.AuthorId != authorId)
+            if (model.AuthorId != authorId && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
