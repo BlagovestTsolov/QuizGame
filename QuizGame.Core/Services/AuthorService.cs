@@ -21,7 +21,7 @@ namespace QuizGame.Core.Services
             return id ?? 0;
         }
 
-        public async Task BecomeAuthorAsync (string userId)
+        public async Task BecomeAuthorAsync(string userId)
         {
             await repository.AddAsync<Author>(new()
             {
@@ -34,6 +34,28 @@ namespace QuizGame.Core.Services
         {
             var authors = await repository.AllReadOnlyAsync<Author>();
             return authors.Any(a => a.UserId == userId);
+        }
+
+        public async Task DeleteAuthorAsync(int authorId)
+        {
+            if (authorId == 0)
+            {
+                return;
+            }
+
+            Author? author = (await repository.AllReadOnlyAsync<Author>())
+                .FirstOrDefault(a => a.Id == authorId);
+
+            if (author == null)
+            {
+                return;
+            }
+
+            if (author.Quizzes.Count > 0)
+            {
+                await repository.DeleteAsync<Author>(authorId);
+                await repository.SaveChangesAsync();
+            }
         }
     }
 }

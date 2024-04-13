@@ -12,14 +12,18 @@ namespace QuizGame.Core.Contracts
 
         Task<List<QuestionTypeModel>> GetQuestionTypesAsync();
 
-        Task DeleteQuizAsync(int id);
+        Task<int> DeleteQuizAsync(int id);
 
         Task<bool> QuestionExistsAsync(string question);
 
         Task<QuizDto> DetailsAsync(int id);
 
-        Task<Quiz?> ExistsAsync(int id);
+        Task<bool> ExistsAsync(int id);
 
-        Task EditAsync(AddQuizModel model);
+        Task EditAsync(AddQuizModel model, int id);
+
+        Task<bool> IsAuthorOfQuizAsync(string userId, int quizId);
+
+        Task<AddQuizModel?> FillModelAsync(int quizId);
     }
 }

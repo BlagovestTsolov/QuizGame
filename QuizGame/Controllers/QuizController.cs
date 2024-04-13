@@ -65,7 +65,10 @@ namespace QuizGame.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            await quizService.DeleteQuizAsync(id);
+
+
+            int authorId = await quizService.DeleteQuizAsync(id);
+            await authorService.DeleteAuthorAsync(authorId);
 
             return RedirectToAction(nameof(All));
         }
@@ -85,36 +88,31 @@ namespace QuizGame.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var entity = await quizService.ExistsAsync(id);
-            int authorId = await authorService.GetAuthorIdAsync(User.Id());
+            if (await quizService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+            if (await authorService.AuthorExistsByIdAsync(User.Id()) == false)
+            {
+                return BadRequest();
+            }
 
-            if (entity == null)
-            {
-                return BadRequest();
-            }
-            if (authorId == 0)
-            {
-                return BadRequest();
-            }
-            if (entity.AuthorId != authorId)
+            if (await quizService.IsAuthorOfQuizAsync(User.Id(), id) == false)
             {
                 return Unauthorized();
             }
 
-            AddQuizModel model = new()
-            {
-                AuthorId = entity.AuthorId,
-                Question = entity.Question,
-                Answer = entity.Answer,
-                QuestionTypeId = entity.QuestionTypeId,
-            };
-            model.QuestionTypes = await quizService.GetQuestionTypesAsync();
+            var model = await quizService.FillModelAsync(id);
 
+            if (model == null)
+            {
+                return BadRequest();
+            }
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(AddQuizModel model)
+        public async Task<IActionResult> Edit(AddQuizModel model, int id)
         {
             int authorId = await authorService.GetAuthorIdAsync(User.Id());
 
@@ -135,7 +133,7 @@ namespace QuizGame.Controllers
 
             model.AuthorId = authorId;
 
-            await quizService.EditAsync(model);
+            await quizService.EditAsync(model, id);
             return RedirectToAction(nameof(All));
         }
     }

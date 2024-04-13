@@ -7,5 +7,7 @@
         Task BecomeAuthorAsync (string userId);
 
         Task<bool> AuthorExistsByIdAsync(string userId);
+
+        Task DeleteAuthorAsync(int authorId);
     }
 }
