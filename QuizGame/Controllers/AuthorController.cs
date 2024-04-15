@@ -22,7 +22,7 @@ namespace QuizGame.Controllers
 
             await authorService.BecomeAuthorAsync(User.Id());
 
-            return RedirectToAction(nameof(QuizController.All), "Quiz");
+            return View();
         }
     }
 }

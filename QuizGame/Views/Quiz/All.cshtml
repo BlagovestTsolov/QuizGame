@@ -1,4 +1,5 @@
-﻿@model IList<QuizDto>
+﻿@inject IQuizService quizService
+@model IList<QuizDto>
 
 @{
     ViewBag.Title = "Quiz Questions";
@@ -21,10 +22,20 @@
                 <td>@quiz.Author</td>
                 <td>@quiz.QuestionType</td>
                 <td>@quiz.Question</td>
-                <td>
-                    <a asp-area="" asp-controller="Quiz" asp-action="Edit" asp-route-id="@quiz.Id" class="btn btn-primary btn-lg">Edit</a>
-                    <a asp-area="" asp-controller="Quiz" asp-action="Delete" asp-route-id="@quiz.Id" class="btn btn-primary btn-lg">Delete</a>
-                </td>
+                @if (await quizService.IsAuthorOfQuizAsync(User.Id(), quiz.Id) == true
+               || User.IsAdmin())
+                {
+                    <td>
+                        <a asp-area="" asp-controller="Quiz" asp-action="Edit" asp-route-id="@quiz.Id" class="btn btn-primary btn-lg">Edit</a>
+                        <a asp-area="" asp-controller="Quiz" asp-action="Delete" asp-route-id="@quiz.Id" class="btn btn-primary btn-lg">Delete</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a asp-area="" asp-controller="Quiz" asp-action="Details" asp-route-id="@quiz.Id" class="btn btn-primary btn-lg">Details</a>
+                    </td>
+                }
             </tr>
         }
     </tbody>

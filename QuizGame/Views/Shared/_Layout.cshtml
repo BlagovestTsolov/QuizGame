@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using QuizGame.Core.Contracts
+@using System.Security.Claims
+@inject IAuthorService authorService;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,7 +28,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Quiz" asp-action="All">All Quizzes</a>
                         </li>
-                        @if (true)
+                        @if (await authorService.AuthorExistsByIdAsync(User.Id()) == true)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Quiz" asp-action="Add">Add Quiz</a>
