@@ -16,5 +16,17 @@
             public const int QuizTypeMaxLength = 20;
             public const int QuizTypeMinLength = 2;
         }
+        
+        public class CategoryConstants
+        {
+            public const int CategoryMaxLength = 20;
+            public const int CategoryMinLength = 2;
+        }
+        
+        public class TriviaConstants
+        {
+            public const int CommentMaxLength = 300;
+            public const int CommentMinLength = 10;
+        }
     }
 }

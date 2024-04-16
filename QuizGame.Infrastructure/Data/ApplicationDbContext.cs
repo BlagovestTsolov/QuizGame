@@ -10,6 +10,10 @@ namespace QuizGame.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            if (!Database.IsRelational())
+            {
+                Database.EnsureCreated();
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -17,7 +21,9 @@ namespace QuizGame.Data
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new AuthorConfiguration());
             builder.ApplyConfiguration(new QuestionTypeConfiguration());
+            builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new QuizConfiguration());
+            builder.ApplyConfiguration(new TriviaConfiguration());
 
             base.OnModelCreating(builder);
         }
@@ -25,5 +31,7 @@ namespace QuizGame.Data
         public DbSet<Author> Authors { get; set; } = null!;
         public DbSet<Quiz> Quizzes { get; set; } = null!;
         public DbSet<QuestionType> QuestionTypes { get; set; } = null!;
+        public DbSet<Trivia> Trivias { get; set; } = null!;
+        public DbSet<Category> Categories { get; set; } = null!;
     }
 }

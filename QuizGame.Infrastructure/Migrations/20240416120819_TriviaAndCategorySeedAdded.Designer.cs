@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuizGame.Data;
 
@@ -11,9 +12,10 @@ using QuizGame.Data;
 namespace QuizGame.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240416120819_TriviaAndCategorySeedAdded")]
+    partial class TriviaAndCategorySeedAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,15 +145,15 @@ namespace QuizGame.Infrastructure.Migrations
                         {
                             Id = "fd59e0b6-59ae-4ff9-a1cf-029508048fe5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "56903955-7f80-478e-8bbc-bdb550d56a8d",
+                            ConcurrencyStamp = "2282a546-4572-4fb4-b2fa-03fb4986ca25",
                             Email = "author@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "author@mail.com",
                             NormalizedUserName = "author@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBFSq6KfJmOhdFi6Vb16D91pAabtSSREnxtcZOoBRo7hVVRCtxNYDXwEopC2KH5Fzw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN/BvUt4PNk7oc+Xd9+n5rDVdrPAVPPkGiPjHBHdE0SzDDWfxyxeE1Fl+bVWA2nlpg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b110223d-8a5b-4465-830a-6195568b625d",
+                            SecurityStamp = "5c5ba070-eae3-4f78-93a4-c75e8bff2bb2",
                             TwoFactorEnabled = false,
                             UserName = "author@mail.com"
                         },
@@ -159,15 +161,15 @@ namespace QuizGame.Infrastructure.Migrations
                         {
                             Id = "73a2cef5-9df0-4cbd-9459-67179923fbb1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ceb8b1ef-bf3b-4511-949b-76bd8c7d8b9d",
+                            ConcurrencyStamp = "afee9413-73a7-4c66-b602-042965f3c86d",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@mail.com",
                             NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAENCuY+xf8XVYVk3qKamJSXiWmc53ZZc0acB0opJnGysw0SXmHeJ7IzPk8TCekJkcCQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJGBjwPXU+JK6n2KMxSz1SpsOY2iOhv4b37MiULahtI9Yj3ChjBraXIFgmf5aDe6GA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f1adb400-d30b-4ab5-b6be-b6da71156d63",
+                            SecurityStamp = "8189a4e6-2b69-4803-b316-a8e4584483e4",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         },
@@ -175,15 +177,15 @@ namespace QuizGame.Infrastructure.Migrations
                         {
                             Id = "0ef1d854-a356-48bd-97d5-e892207d5f5e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bdde2490-f4a1-4054-b7c6-57f587f51a1d",
+                            ConcurrencyStamp = "c4037c23-92d2-490d-af1c-9587b9f84a45",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDarBXF56p+EsUUUBp6LHG92RbLFUICP+PpBH2onhxr3khX1tiS79EAP4hlKnNd+Ug==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPVZqONtpxfBpk2aSl9z0mseUKOt93LOmnJdpLDIbPXOunX+bdEJbki4qZ3+JsfDkg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "21b32832-864e-483d-a1ee-3eaaf1f05e62",
+                            SecurityStamp = "b8f81576-0d9a-47f0-ac6e-e56bf505413c",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         });
@@ -325,23 +327,6 @@ namespace QuizGame.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Tech"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Politics"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Sports"
-                        });
                 });
 
             modelBuilder.Entity("QuizGame.Infrastructure.Data.Models.QuestionType", b =>
@@ -475,29 +460,6 @@ namespace QuizGame.Infrastructure.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Trivias");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AuthorId = 1,
-                            CategoryId = 1,
-                            Comment = "Няколко български компании разработват AI и ML решения за различни индустрии, като здравеопазване, финанси, селско стопанство и производство."
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AuthorId = 1,
-                            CategoryId = 2,
-                            Comment = "Българската политика е сравнително динамична и многопартийна, с множество политически партии, които се борят за влияние."
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AuthorId = 1,
-                            CategoryId = 3,
-                            Comment = "Григор Димитров: Най-успешният български тенисист, класирал се до №3 в световната ранглиста за мъже. Печелил е ATP Finals през 2018 г. и е участвал на полуфинал на Уимбълдън през 2014 г."
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

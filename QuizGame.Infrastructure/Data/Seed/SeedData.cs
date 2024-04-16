@@ -21,18 +21,32 @@ namespace QuizGame.Infrastructure.Data.Seed
 
         public QuestionType LiteratureQuestionType { get; set; }
 
+        public Category TechCategory { get; set; }
+
+        public Category PoliticCategory { get; set; }
+
+        public Category SportCategory { get; set; }
+
         public Quiz FirstQuiz { get; set; }
 
         public Quiz SecondQuiz { get; set; }
 
         public Quiz ThirdQuiz { get; set; }
 
+        public Trivia FirstTrivia { get; set; }
+
+        public Trivia SecondTrivia { get; set; }
+
+        public Trivia ThirdTrivia { get; set; }
+
         public SeedData()
         {
             SeedUsers();
             SeedAuthors();
             SeedQuestionTypes();
+            SeedCategories();
             SeedQuizzes();
+            SeedTrivias();
         }
 
         private void SeedUsers()
@@ -112,6 +126,27 @@ namespace QuizGame.Infrastructure.Data.Seed
             };
         }
 
+        private void SeedCategories()
+        {
+            TechCategory = new Category()
+            {
+                Id = 1,
+                Name = "Tech"
+            };
+
+            PoliticCategory = new Category()
+            {
+                Id = 2,
+                Name = "Politics"
+            };
+
+            SportCategory = new Category()
+            {
+                Id = 3,
+                Name = "Sports"
+            };
+        }
+
         private void SeedQuizzes()
         {
             FirstQuiz = new Quiz()
@@ -139,6 +174,33 @@ namespace QuizGame.Infrastructure.Data.Seed
                 Answer = "Трите основни периода в развитието на българската литература са: Старобългарска литература (IX-XVIII век), Възрожденска литература (XVIII-XIX век) и Съвременна българска литература (XIX-XXI век)",
                 QuestionTypeId = LiteratureQuestionType.Id,
                 AuthorId = Author.Id
+            };
+        }
+
+        private void SeedTrivias()
+        {
+            FirstTrivia = new Trivia()
+            {
+                Id = 1,
+                Comment = "Няколко български компании разработват AI и ML решения за различни индустрии, като здравеопазване, финанси, селско стопанство и производство.",
+                CategoryId = TechCategory.Id,
+                AuthorId = Author.Id,
+            };
+
+            SecondTrivia = new Trivia()
+            {
+                Id = 2,
+                Comment = "Българската политика е сравнително динамична и многопартийна, с множество политически партии, които се борят за влияние.",
+                CategoryId = PoliticCategory.Id,
+                AuthorId = Author.Id,
+            };
+
+            ThirdTrivia = new Trivia()
+            {
+                Id = 3,
+                Comment = "Григор Димитров: Най-успешният български тенисист, класирал се до №3 в световната ранглиста за мъже. Печелил е ATP Finals през 2018 г. и е участвал на полуфинал на Уимбълдън през 2014 г.",
+                CategoryId = SportCategory.Id,
+                AuthorId = Author.Id,
             };
         }
     }
