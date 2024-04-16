@@ -1,0 +1,25 @@
+﻿@model AddTriviaModel
+
+@{
+    ViewBag.Title = "Edit Trivia";
+}
+
+<form asp-action="Edit" asp-controller="Trivia" method="post">
+    <input type="hidden" asp-for="AuthorId" />
+    <div class="form-group">
+        <label asp-for="Comment">Comment:</label>
+        <textarea asp-for="Comment" rows="5" class="form-control"></textarea>
+        <span asp-validation-for="Comment" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId">Category:</label>
+        <select asp-for="CategoryId" class="form-control">
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

@@ -52,5 +52,11 @@ namespace QuizGame.Infrastructure.Repository
             .ThenInclude(a => a.User)
             .AsNoTracking()
             .ToListAsync();
+
+        public async Task<IList<Author>> AuthorsWithQuizzesAndTrivias()
+            => await context.Authors
+            .Include(a => a.Quizzes)
+            .Include(a => a.Trivias)
+            .ToListAsync();
     }
 }

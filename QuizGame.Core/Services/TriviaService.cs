@@ -1,5 +1,6 @@
 ﻿using QuizGame.Core.Contracts;
 using QuizGame.Core.Models.Category;
+using QuizGame.Core.Models.Quiz;
 using QuizGame.Core.Models.QuizType;
 using QuizGame.Core.Models.Trivia;
 using QuizGame.Infrastructure.Data.Models;
@@ -112,5 +113,41 @@ namespace QuizGame.Core.Services
         public async Task<bool> CommentExistsAsync(string comment)
             => (await repository.AllReadOnlyAsync<Trivia>())
                 .Any(q => q.Comment == comment);
+
+        public async Task EditAsync(AddTriviaModel model, int id)
+        {
+            Trivia trivia = new()
+            {
+                AuthorId = model.AuthorId,
+                Comment = model.Comment,
+                CategoryId = model.CategoryId
+            };
+
+            await repository.DeleteAsync<Trivia>(id);
+            await repository.AddAsync(trivia);
+
+            await repository.SaveChangesAsync();
+        }
+
+        public async Task<AddTriviaModel?> FillModelAsync(int quizId)
+        {
+            var trivia = (await repository.AllReadOnlyAsync<Trivia>())
+                .FirstOrDefault(q => q.Id == quizId);
+
+            if (trivia == null)
+            {
+                return null;
+            }
+
+            AddTriviaModel model = new()
+            {
+                AuthorId = trivia.AuthorId,
+                Comment = trivia.Comment,
+                CategoryId = trivia.CategoryId,
+            };
+            model.Categories = await GetCategoriesAsync();
+
+            return model;
+        }
     }
 }

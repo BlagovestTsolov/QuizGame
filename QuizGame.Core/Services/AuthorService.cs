@@ -43,7 +43,7 @@ namespace QuizGame.Core.Services
                 return;
             }
 
-            Author? author = (await repository.AllReadOnlyAsync<Author>())
+            Author? author = (await repository.AuthorsWithQuizzesAndTrivias())
                 .FirstOrDefault(a => a.Id == authorId);
 
             if (author == null)
@@ -51,7 +51,7 @@ namespace QuizGame.Core.Services
                 return;
             }
 
-            if (author.Quizzes.Count == 0)
+            if (author.Quizzes.Count == 0 && author.Trivias.Count == 0)
             {
                 await repository.DeleteAsync<Author>(authorId);
                 await repository.SaveChangesAsync();

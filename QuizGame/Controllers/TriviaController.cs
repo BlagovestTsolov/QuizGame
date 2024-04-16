@@ -65,5 +65,76 @@ namespace QuizGame.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (await triviaService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+            if (await authorService.AuthorExistsByIdAsync(User.Id()) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await triviaService.IsAuthorOfTriviaAsync(User.Id(), id) == false &&
+                User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }
+
+            var model = await triviaService.FillModelAsync(id);
+            if (model == null)
+            {
+                return BadRequest();
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(AddTriviaModel model, int id)
+        {
+            int authorId = await authorService.GetAuthorIdAsync(User.Id());
+
+            if (!ModelState.IsValid)
+            {
+                model.Categories = await triviaService.GetCategoriesAsync();
+
+                return View(model);
+            }
+            if (authorId == 0)
+            {
+                return BadRequest();
+            }
+            if (model.AuthorId != authorId && User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }
+
+            model.AuthorId = authorId;
+
+            await triviaService.EditAsync(model, id);
+            return RedirectToAction(nameof(All));
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (await triviaService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await triviaService.IsAuthorOfTriviaAsync(User.Id(), id) == false &&
+                User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }
+
+            int authorId = await triviaService.DeleteTriviaAsync(id);
+            await authorService.DeleteAuthorAsync(authorId);
+
+            return RedirectToAction(nameof(All));
+        }
     }
 }

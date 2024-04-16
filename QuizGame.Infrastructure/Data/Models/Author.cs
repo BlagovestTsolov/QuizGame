@@ -20,6 +20,7 @@ namespace QuizGame.Infrastructure.Data.Models
         public IdentityUser User { get; set; } = null!;
 
         public IList<Quiz> Quizzes { get; set; } = new List<Quiz>();
+        public IList<Trivia> Trivias { get; set; } = new List<Trivia>();
 
     }
 }

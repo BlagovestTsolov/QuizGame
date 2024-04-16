@@ -15,8 +15,12 @@ namespace QuizGame.Core.Contracts
 
         Task<bool> CommentExistsAsync(string comment);
 
+        Task EditAsync(AddTriviaModel model, int id);
+
         Task<int> DeleteTriviaAsync(int id);
 
         Task<bool> IsAuthorOfTriviaAsync(string userId, int triviaId);
+
+        Task<AddTriviaModel?> FillModelAsync(int quizId);
     }
 }
