@@ -82,10 +82,8 @@ namespace QuizGame.Core.Services
         }
 
         public async Task<bool> QuestionExistsAsync(string question)
-        {
-            var quizzes = await repository.AllReadOnlyAsync<Quiz>();
-            return quizzes.Any(q => q.Question == question);
-        }
+            => (await repository.AllReadOnlyAsync<Quiz>())
+                .Any(q => q.Question == question);
 
         public async Task<QuizDto> DetailsAsync(int id)
         {

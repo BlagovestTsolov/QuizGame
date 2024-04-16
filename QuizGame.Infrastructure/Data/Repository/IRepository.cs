@@ -10,6 +10,8 @@ namespace QuizGame.Infrastructure.Repository
 
         Task<IList<Quiz>> QuizzesWithAuthorsReadOnlyAsync();
 
+        Task<IList<Trivia>> TriviasWithAuthorsReadOnlyAsync();
+
         Task AddAsync<T>(T entity) where T : class;
 
         Task SaveChangesAsync();

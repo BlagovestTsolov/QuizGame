@@ -44,5 +44,13 @@ namespace QuizGame.Infrastructure.Repository
                 context.Remove(entity);
             }
         }
+
+        public async Task<IList<Trivia>> TriviasWithAuthorsReadOnlyAsync()
+            => await context.Trivias
+            .Include(t => t.Category)
+            .Include(t => t.Author)
+            .ThenInclude(a => a.User)
+            .AsNoTracking()
+            .ToListAsync();
     }
 }

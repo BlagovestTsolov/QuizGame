@@ -16,6 +16,7 @@ namespace QuizGame.Extensions
             services.AddScoped<IQuizService, QuizService>();
             services.AddScoped<IStatisticService, StatisticService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITriviaService, TriviaService>();
 
             return services;
         }

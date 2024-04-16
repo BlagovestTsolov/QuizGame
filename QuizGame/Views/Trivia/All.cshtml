@@ -1,0 +1,42 @@
+﻿@inject ITriviaService triviaService
+@model IList<TriviaDto>
+
+@{
+    ViewBag.Title = "All trivias";
+}
+
+<h2>Quiz Questions</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trivia in Model)
+        {
+            <tr>
+                <td>@trivia.Author</td>
+                <td>@trivia.Category</td>
+                <td>@trivia.Comment</td>
+                @if (await triviaService.IsAuthorOfTriviaAsync(User.Id(), trivia.Id) == true
+               || User.IsAdmin())
+                {
+                    <td>
+                        <a asp-area="" asp-controller="Trivia" asp-action="Edit" asp-route-id="@trivia.Id" class="btn btn-primary btn-lg">Edit</a>
+                        <a asp-area="" asp-controller="Trivia" asp-action="Delete" asp-route-id="@trivia.Id" class="btn btn-primary btn-lg">Delete</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a asp-area="" asp-controller="Quiz" asp-action="Details" asp-route-id="@trivia.Id" class="btn btn-primary btn-lg">Details</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

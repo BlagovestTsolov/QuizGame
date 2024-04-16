@@ -28,10 +28,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Quiz" asp-action="All">All Quizzes</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Trivia" asp-action="All">All Trivias</a>
+                        </li>
                         @if (await authorService.AuthorExistsByIdAsync(User.Id()) == true)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Quiz" asp-action="Add">Add Quiz</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Trivia" asp-action="Add">Add Trivia</a>
                             </li>
                         }
                         else
