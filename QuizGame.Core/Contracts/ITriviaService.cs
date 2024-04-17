@@ -21,6 +21,6 @@ namespace QuizGame.Core.Contracts
 
         Task<bool> IsAuthorOfTriviaAsync(string userId, int triviaId);
 
-        Task<AddTriviaModel?> FillModelAsync(int quizId);
+        Task<AddTriviaModel?> FillModelAsync(int triviaId);
     }
 }

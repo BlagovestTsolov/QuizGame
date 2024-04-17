@@ -129,7 +129,7 @@ namespace QuizGame.Core.Services
             await repository.SaveChangesAsync();
         }
 
-        public async Task<AddTriviaModel?> FillModelAsync(int quizId)
+        public async Task<AddTriviaModel?> FillModelAsync(int triviaId)
         {
             var trivia = (await repository.AllReadOnlyAsync<Trivia>())
                 .FirstOrDefault(q => q.Id == quizId);
