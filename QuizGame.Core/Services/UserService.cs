@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using QuizGame.Core.Contracts;
 using QuizGame.Core.Models.User;
 using QuizGame.Infrastructure.Repository;
@@ -8,13 +7,10 @@ namespace QuizGame.Core.Services
 {
     public class UserService : IUserService
     {
-        private readonly UserManager<IdentityUser> userManager;
         private readonly IRepository repository;
 
-        public UserService(UserManager<IdentityUser> _userManager,
-            IRepository _repository)
+        public UserService(IRepository _repository)
         {
-            userManager = _userManager;
             repository = _repository;
         }
 
