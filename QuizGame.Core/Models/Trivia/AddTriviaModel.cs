@@ -1,5 +1,4 @@
 ﻿using QuizGame.Core.Models.Category;
-using QuizGame.Core.Models.QuizType;
 using System.ComponentModel.DataAnnotations;
 using static QuizGame.Infrastructure.Data.Constants.DataConstants;
 using static QuizGame.Infrastructure.ErrorMessages.ErrorMessages;

@@ -166,5 +166,10 @@ namespace QuizGame.Core.Services
 
             return model;
         }
+
+        public async Task<IList<string>> AllQuestionTypesNamesAsync()
+            => (await repository.AllReadOnlyAsync<QuestionType>())
+               .Select(c => c.Name)
+               .ToList();
     }
 }

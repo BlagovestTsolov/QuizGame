@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QuizGame.Core.Contracts;
 using QuizGame.Core.Models.Quiz;
+using QuizGame.Core.Services;
 using System.Security.Claims;
 
 namespace QuizGame.Controllers
