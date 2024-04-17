@@ -3,7 +3,7 @@ using QuizGame.Core.Contracts;
 
 namespace QuizGame.Controllers
 {
-    public class StatisticController : Controller
+    public class StatisticController : BaseController
     {
         private readonly IStatisticService statisticService;
 

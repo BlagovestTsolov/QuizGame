@@ -4,5 +4,6 @@
     {
         public int TotalQuizzes { get; set; }
         public int TotalAuthors { get; set; }
+        public int TotalTrivias { get; set; }
     }
 }
