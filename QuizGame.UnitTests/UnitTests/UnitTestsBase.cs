@@ -23,7 +23,7 @@ namespace QuizGame.UnitTests.UnitTests
             SeedDatabase();
         }
 
-        private async Task SeedDatabase()
+        protected async Task SeedDatabase()
         {
             Author = new Author()
             {

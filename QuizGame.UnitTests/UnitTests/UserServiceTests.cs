@@ -11,7 +11,7 @@ namespace QuizGame.UnitTests.UnitTests
 
         [OneTimeSetUp]
         public void SetUp()
-            => userService = new UserService(context);
+            => userService = new UserService(context); 
 
         [Test]
         public async Task GetAllUsersAsync_ShouldReturnCorrectData()

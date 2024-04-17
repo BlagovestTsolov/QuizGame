@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\QuizGame.Core\QuizGame.Core.csproj" />
     <ProjectReference Include="..\QuizGame.Infrastructure\QuizGame.Infrastructure.csproj" />
+    <ProjectReference Include="..\QuizGame\QuizGame.csproj" />
   </ItemGroup>
 
 </Project>
