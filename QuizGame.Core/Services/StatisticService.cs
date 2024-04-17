@@ -18,11 +18,13 @@ namespace QuizGame.Core.Services
         {
             var quizzes = await repository.AllReadOnlyAsync<Quiz>();
             var authors = await repository.AllReadOnlyAsync<Author>();
+            var trivias = await repository.AllReadOnlyAsync<Trivia>();
 
             StatisticModel model = new()
             {
                 TotalQuizzes = quizzes.Count,
-                TotalAuthors = authors.Count
+                TotalAuthors = authors.Count,
+                TotalTrivias = trivias.Count
             };
 
             return model;
