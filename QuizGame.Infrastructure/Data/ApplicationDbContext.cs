@@ -7,23 +7,35 @@ namespace QuizGame.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        private bool seedDb;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
+            bool seed = true)
             : base(options)
         {
-            if (!Database.IsRelational())
+            if (Database.IsRelational())
+            {
+                Database.Migrate();
+            }
+            else
             {
                 Database.EnsureCreated();
             }
+
+            seedDb = seed;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new AuthorConfiguration());
-            builder.ApplyConfiguration(new QuestionTypeConfiguration());
-            builder.ApplyConfiguration(new CategoryConfiguration());
-            builder.ApplyConfiguration(new QuizConfiguration());
-            builder.ApplyConfiguration(new TriviaConfiguration());
+            if (seedDb)
+            {
+                builder.ApplyConfiguration(new UserConfiguration());
+                builder.ApplyConfiguration(new AuthorConfiguration());
+                builder.ApplyConfiguration(new QuestionTypeConfiguration());
+                builder.ApplyConfiguration(new CategoryConfiguration());
+                builder.ApplyConfiguration(new QuizConfiguration());
+                builder.ApplyConfiguration(new TriviaConfiguration());
+            }
 
             base.OnModelCreating(builder);
         }
