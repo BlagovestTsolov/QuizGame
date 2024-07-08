@@ -15,16 +15,16 @@ namespace QuizGame.UnitTests.UnitTests
         [OneTimeSetUp]
         public void SetUp()
         {
-            repo = new Mock<IRepository>();
-            repo.Setup(x => x.AddAsync(It.IsAny(new Quiz() 
-            {
-                Id = 1,
-                Author = Author,
-                QuestionType = new QuestionType { Name = "History" },
-                Question = "Question",
-                Answer = "Answer"
-            })))
-                .Returns();
+            //repo = new Mock<IRepository>();
+            //repo.Setup(x => x.AddAsync(It.IsAny(new Quiz() 
+            //{
+            //    Id = 1,
+            //    Author = Author,
+            //    QuestionType = new QuestionType { Name = "History" },
+            //    Question = "Question",
+            //    Answer = "Answer"
+            //})))
+            //    .Returns();
 
             authorService = new AuthorService(repo.Object); 
         }
